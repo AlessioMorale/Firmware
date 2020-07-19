@@ -1,0 +1,13 @@
+{
+    "board_id": 150,
+    "magic": "OPREVOLUTION",
+    "description": "Firmware for the OpenPilot revolution board",
+    "image": "",
+    "build_time": 0,
+    "summary": "PX4/OPRevolution",
+    "version": "0.1",
+    "image_size": 0,
+    "image_maxsize": 1032192,
+    "git_identity": "",
+    "board_revision": 0
+}
