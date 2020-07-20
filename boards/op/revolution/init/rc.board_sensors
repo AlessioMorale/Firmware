@@ -8,4 +8,4 @@ adc start
 mpu6000 -R 6 -s start
 
 ms5611 -I start
-hm5883 -I start
+hmc5883 -I start
