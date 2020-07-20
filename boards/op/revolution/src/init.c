@@ -165,39 +165,8 @@ stm32_boardinitialize(void)
 	/* configure ADC pins */
 	stm32_configgpio(GPIO_ADC1_IN12);	/* BATT_VOLTAGE_SENS */
 	stm32_configgpio(GPIO_ADC1_IN11);	/* BATT_CURRENT_SENS */
-	//stm32_configgpio(GPIO_ADC1_IN0);	/* RSSI analog in (TX of UART4 instead) */
 
-	// TODO: power peripherals
-	///* configure power supply control/sense pins */
-	//stm32_configgpio(GPIO_PERIPH_3V3_EN);
-	//stm32_configgpio(GPIO_VDD_BRICK_VALID);
-	//stm32_configgpio(GPIO_VDD_USB_VALID);
-
-	// TODO: 3v3 Sensor?
-	///* Start with Sensor voltage off We will enable it
-	// * in board_app_initialize
-	// */
-	//stm32_configgpio(GPIO_VDD_3V3_SENSORS_EN);
-
-	// TODO: SBUS inversion? SPEK power?
 	stm32_configgpio(GPIO_SBUS_INV);
-	//stm32_configgpio(GPIO_SPEKTRUM_PWR_EN);
-
-	// TODO: $$$ Unused?
-	//stm32_configgpio(GPIO_8266_GPIO0);
-	//stm32_configgpio(GPIO_8266_PD);
-	//stm32_configgpio(GPIO_8266_RST);
-
-	/* Safety - led don in led driver */
-
-	// TODO: unused?
-	//stm32_configgpio(GPIO_BTN_SAFETY);
-
-	// TODO: RSSI
-	//stm32_configgpio(GPIO_RSSI_IN);
-
-	//stm32_configgpio(GPIO_PPM_IN);
-
 	/* configure SPI all interfaces GPIO */
 
 	stm32_spiinitialize();
@@ -245,12 +214,12 @@ __EXPORT int board_app_initialize(uintptr_t arg)
 
 	/* set up the serial DMA polling */
 	static struct hrt_call serial_dma_call;
-	struct timespec ts;
 
 	/*
 	 * Poll at 1ms intervals for received bytes that have not triggered
 	 * a DMA event.
 	 */
+	struct timespec ts;
 	ts.tv_sec = 0;
 	ts.tv_nsec = 1000000;
 
@@ -265,7 +234,7 @@ __EXPORT int board_app_initialize(uintptr_t arg)
 	led_off(LED_BLUE);
 
 	if (board_hardfault_init(2, true) != 0) {
-		led_on(LED_BLUE);
+		led_on(LED_AMBER);
 	}
 
 
@@ -276,12 +245,12 @@ __EXPORT int board_app_initialize(uintptr_t arg)
 
 	if (!spi1) {
 		syslog(LOG_ERR, "[boot] FAILED to initialize SPI port 1\n");
-		led_on(LED_BLUE);
+		led_on(LED_AMBER);
 		return -ENODEV;
 	}
 
 	/* Default SPI1 to 1MHz and de-assert the known chip selects. */
-	SPI_SETFREQUENCY(spi1, 10000000);
+	SPI_SETFREQUENCY(spi1, 16000000);
 	SPI_SETBITS(spi1, 8);
 	SPI_SETMODE(spi1, SPIDEV_MODE3);
 	up_udelay(20);
@@ -309,8 +278,8 @@ __EXPORT int board_app_initialize(uintptr_t arg)
 	up_udelay(20);
 
 	*/
-	
-	
+
+
 #if defined(FLASH_BASED_PARAMS)
 	static sector_descriptor_t params_sector_map[] = {
 		{1, 16 * 1024, 0x08004000},

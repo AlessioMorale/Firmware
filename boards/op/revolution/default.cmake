@@ -8,10 +8,10 @@ px4_add_board(
 	ROMFSROOT px4fmu_common
 	CONSTRAINED_FLASH
 	SERIAL_PORTS
-		RC:/dev/ttyS1 # USART1/MAINPORT
+		RC:/dev/ttyS0 # USART1/MAINPORT
 		TEL1:/dev/ttyS2 # Servo5/6 UART4
-		GPS1:/dev/ttyS3 # Servo3/4 USART2
-		
+		GPS1:/dev/ttyS1 # Servo3/4 USART2
+
 	DRIVERS
 		adc
 		#barometer # all available barometer drivers

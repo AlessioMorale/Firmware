@@ -68,24 +68,24 @@
 |            |                  |                  |                  |                  |                  |                  |                  |   TIM8_TRIG      |
 |            |                  |                  |                  |                  |                  |                  |                  |   TIM8_COM       |
 |            |                  |                  |                  |                  |                  |                  |                  |                  |
-| Usage      | SPI1_RX_1        | USART6_RX_1      | USART1_RX_1      | SPI1_TX_1        |                  |                  | SDIO             |                  |
+| Usage      | SPI1_RX_1        | TIM8_UP          | USART1_RX_1      | SPI1_TX_1        |                  |                  | SDIO             |                  |
  */
 
 // DMA1 Channel/Stream Selections
 //--------------------------------------------//---------------------------//----------------
-#define DMACHAN_SPI3_RX    DMAMAP_SPI3_RX_1 // DMA1, Stream 0
-//      DMAMAP_TIM2_UP                        // DMA1, Stream 1, Channel 3    (DSHOT)
+//#define DMACHAN_SPI3_RX    DMAMAP_SPI3_RX_1   // DMA1, Stream 0  //disabled for now, SPI3 is used by flash/radio
+//      AVAILABLE                             // DMA1, Stream 1, Channel 3    (DSHOT)
 //      DMAMAP_TIM3_UP                        // DMA1, Stream 2, Channel 5    (DSHOT)
 //      AVAILABLE                             // DMA1, Stream 3, Channel 0    (SPI2 RX)
 //      AVAILABLE                             // DMA1, Stream 4, Channel 0    (SPI2 TX)
-#define DMACHAN_SPI3_TX    DMAMAP_SPI3_TX_1          // DMA2, Stream 5
+//#define DMACHAN_SPI3_TX    DMAMAP_SPI3_TX_1          // DMA2, Stream 5
 //      AVAILABLE                             // DMA2, Stream 6
 //      AVAILABLE                             // DMA2, Stream 7
 
 //  DMA2 Channel/Stream Selections
 //--------------------------------------------//---------------------------//----------------
 #define DMACHAN_SPI1_RX    DMAMAP_SPI1_RX_1   // DMA2, Stream 0, Channel 3    (SPI1 RX)
-#define DMAMAP_USART6_RX   DMAMAP_USART6_RX_1 // DMA2, Stream 1, Channel 4
+//      DMACHAN_TIM8_UP                       // DMA2, Stream 1, Channel 4
 #define DMAMAP_USART1_RX   DMAMAP_USART1_RX_1 // DMA2, Stream 2, Channel 4
 #define DMACHAN_SPI1_TX    DMAMAP_SPI1_TX_1   // DMA2, Stream 3, Channel 3    (SPI1 TX)
 //      AVAILABLE                             // DMA2, Stream 4
