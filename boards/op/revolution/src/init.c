@@ -159,7 +159,7 @@ stm32_boardinitialize(void)
 	board_on_reset(-1);
 
 	/* configure LEDs */
-	board_autoled_initialize();
+	led_init();
 
 
 	/* configure ADC pins */
